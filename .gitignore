@@ -1,0 +1,74 @@
+# Dart/Pub related
+.dart_tool/
+.packages
+.pub/
+build/
+*.dart.js
+*.dart.js.map
+*.info
+*.tmp
+*.log
+
+# Flutter related
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-versions
+*.iml
+*.ipr
+*.iws
+.idea/
+*.pid
+*.seed
+*.swp
+*.swo
+
+# Android related
+**/android/.gradle
+**/android/app/build/
+**/android/.gradle/
+**/android/.idea/
+**/android/.settings/
+**/android/gradle/
+**/android/gradle-wrapper.jar
+
+# iOS related
+**/ios/Flutter/.symlinks/
+**/ios/Flutter/Flutter.framework/
+**/ios/Flutter/Flutter.podspec
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Podfile.lock
+**/ios/Podfile
+**/ios/Runner.xcworkspace/
+**/ios/DerivedData/
+
+# macOS related
+**/macos/Flutter/Flutter.framework/
+**/macos/Flutter/Flutter.podspec
+**/macos/Pods/
+**/macos/.symlinks/
+
+# Web related
+**/web/assets/
+**/web/manifest.json
+
+# Windows related
+**/windows/Flutter/Flutter.framework/
+**/windows/Flutter/Flutter.podspec
+**/windows/Pods/
+**/windows/.symlinks/
+
+# Other
+*.DS_Store
+*.sublime-workspace
+*.sublime-project
+*.vscode/
+*.vscode-extensions/
+*.local/
+*.history/
+*.project
+*.classpath
+
+# Environment files
+.env
+.env.*
