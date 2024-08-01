@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:employee_management/helpers/api_urls.dart';
+import 'package:employee_management/models/create_employee_model.dart';
 import 'package:employee_management/models/employeeListModel.dart';
 import 'package:employee_management/models/employee_detail_model.dart';
 import 'package:http/http.dart' as http;
@@ -49,8 +50,8 @@ class EmployeeService {
     }
   }
 
-  Future<Map<String, dynamic>> createEmployee(String name, String salary, String age) async {
-    final response = await http.post(
+  Future<CreateEmployeeModel> createEmployee(String name, String salary, String age) async {
+    final response = await _retryRequest(() => http.post(
       Uri.parse(ApiUrls.createEmployee),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -60,10 +61,12 @@ class EmployeeService {
         'salary': salary,
         'age': age,
       }),
+    )
     );
 
     if (response.statusCode == 200) {
-      return json.decode(response.body);
+      print("response ${response.body}");
+      return CreateEmployeeModel.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to create employee');
     }
@@ -97,7 +100,7 @@ try{
   }
 
   Future<void> deleteEmployee(String id) async {
-    final response = await http.delete(Uri.parse(ApiUrls.deleteEmployee(id)));
+    final response = await _retryRequest(() => http.delete(Uri.parse(ApiUrls.deleteEmployee(id))));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to delete employee');

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../models/employeeListModel.dart';
 import '../models/employee_detail_model.dart';
 import '../services/employee_services.dart';
 
@@ -67,5 +68,37 @@ class EmployeeController extends GetxController {
       error(e.toString());
     }
   }
+
+  Future<void> addEmployee(String name, String salary, String age) async {
+    try {
+      isLoading(true);
+      final response = await _employeeService.createEmployee(name, salary, age);
+      Employees employee = Employees();
+      employee.employeeName = response.data!.name;
+      employee.employeeAge = int.parse(response.data!.age!);
+      employee.employeeSalary = int.parse(response.data!.salary!);
+      employee.id = response.data!.id;
+       employees.add(employee);
+      isLoading(false);
+    } catch (e) {
+      isLoading(false);
+      error(e.toString());
+    }
+  }
+
+  deleteEmployee(String id)async{
+    try {
+      isLoading(true);
+      await _employeeService.deleteEmployee(id);
+      employees.removeWhere((employee) {
+        return employee.id.toString() == id.toString();
+      });
+      isLoading(false);
+    } catch (e) {
+      isLoading(false);
+      error(e.toString());
+    }
+  }
+
 }
 
