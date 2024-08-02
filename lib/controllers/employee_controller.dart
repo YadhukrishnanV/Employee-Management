@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/employeeListModel.dart';
@@ -37,7 +38,7 @@ class EmployeeController extends GetxController {
     try {
       isLoading(true);
       _employeeService.fetchEmployeeById(id).then((value) {
-        print("!!!$value");
+        debugPrint("!!!$value");
         employeeDetail(value!);
         isLoading(false);
       },);
@@ -53,7 +54,7 @@ class EmployeeController extends GetxController {
       EmployeeService.updateEmployee(employeeId,
           name,salary,
           age).then((value) {
-        print("!!!$value");
+        debugPrint("!!!$value");
         if (value.data != null) {
           employeeDetail.update((employee) {
             employee!.data!.employeeName = value.data!.name;

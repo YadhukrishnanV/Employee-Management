@@ -6,7 +6,7 @@ import '../controllers/employee_controller.dart';
 class EmployeeDetailScreen extends StatefulWidget {
   final int employeeId;
 
-  EmployeeDetailScreen({required this.employeeId});
+  const EmployeeDetailScreen({super.key, required this.employeeId});
 
   @override
   _EmployeeDetailScreenState createState() => _EmployeeDetailScreenState();
@@ -96,33 +96,52 @@ class _EmployeeDetailScreenState extends State<EmployeeDetailScreen> {
           final employee = employeeController.employeeDetail;
           return Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Name: ${employee.value.data!.employeeName}',
+            child: Center(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height/2,
+                width: MediaQuery.of(context).size.width/2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Name: ',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '${employee.value.data!.employeeName}',
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.edit),
+
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Salary: '),
+                        Text('${employee.value.data!.employeeSalary}'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Age: '),
+                        Text('${employee.value.data!.employeeAge}'),
+                      ],
+                    ),
+                    const SizedBox(height: 40,),
+                    ElevatedButton(
                         onPressed: _showEditDialog,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Text('Salary: ${employee.value.data!.employeeSalary}'),
-                  Text('Age: ${employee.value.data!.employeeAge}'),
-                ],
+                      child: const Text('Edit Details'),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

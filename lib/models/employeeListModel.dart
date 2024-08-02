@@ -10,19 +10,19 @@ class EmployeeListModel {
     if (json['data'] != null) {
       data = <Employees>[];
       json['data'].forEach((v) {
-        data!.add(new Employees.fromJson(v));
+        data!.add(Employees.fromJson(v));
       });
     }
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -50,12 +50,12 @@ class Employees {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['employee_name'] = this.employeeName;
-    data['employee_salary'] = this.employeeSalary;
-    data['employee_age'] = this.employeeAge;
-    data['profile_image'] = this.profileImage;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['employee_name'] = employeeName;
+    data['employee_salary'] = employeeSalary;
+    data['employee_age'] = employeeAge;
+    data['profile_image'] = profileImage;
     return data;
   }
 }

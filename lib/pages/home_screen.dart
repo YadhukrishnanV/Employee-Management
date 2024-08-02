@@ -7,6 +7,8 @@ import 'employee_detail_screen.dart';
 class HomePage extends StatelessWidget {
   final EmployeeController employeeController = Get.put(EmployeeController());
 
+  HomePage({super.key});
+
   void _showAddEmployeeDialog() {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController salaryController = TextEditingController();
@@ -73,14 +75,23 @@ class HomePage extends StatelessWidget {
           children: [
             const Text('Employee List'),
             const SizedBox(width: 80),
-            InkWell(
-              onTap: _showAddEmployeeDialog,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(Icons.add),
-                  Text("ADD")
-                ],
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.blue,
+              ),
+              child: InkWell(
+                onTap: _showAddEmployeeDialog,
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 4.0,bottom: 4.0,right: 15,left: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(Icons.add),
+                      Text("ADD")
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
@@ -111,7 +122,7 @@ class HomePage extends StatelessWidget {
                           Get.snackbar('Error', 'Failed to add employee');
                         }
                       },
-                      child: const Icon(Icons.delete),
+                      child: const Icon(Icons.delete,color: Colors.red,),
                     )
                   ],
                 ),
